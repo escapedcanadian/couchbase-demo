@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTAINER Couchbase Docker Team <docker@couchbase.com>
+MAINTAINER David Brown <david.brown@couchbase.com>
 
 # Install dependencies:
 #  runit: for container process management
@@ -19,10 +19,10 @@ RUN apt-get update && \
     apt-get autoremove && apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ARG CB_VERSION=6.5.0-beta2
-ARG CB_RELEASE_URL=https://packages.couchbase.com/releases/6.5.0-beta2
-ARG CB_PACKAGE=couchbase-server-enterprise_6.5.0-beta2-ubuntu16.04_amd64.deb
-ARG CB_SHA256=08aba6dfbacc6d4a217996753d47c852ca24a4a628eb2b073538fe3a3c9ccbc4
+ARG CB_VERSION=6.5.0
+ARG CB_RELEASE_URL=https://packages.couchbase.com/releases/6.5.0
+ARG CB_PACKAGE=couchbase-server-enterprise_6.5.0-ubuntu16.04_amd64.deb
+ARG CB_SHA256=5505c6bb026090dae7351e9d83caeab00437f19e48e826afd4cb6bafc484cd2b
 
 ENV PATH=$PATH:/opt/couchbase/bin:/opt/couchbase/bin/tools:/opt/couchbase/bin/install
 
@@ -72,5 +72,6 @@ CMD ["couchbase-server"]
 # 18095: Analytics (SSL) (5.5+)
 # 18096: Eventing (SSL) (5.5+)
 EXPOSE 8091 8092 8093 8094 8095 8096 11207 11210 11211 18091 18092 18093 18094 18095 18096
+
 VOLUME /opt/demo/temp
 ENV PATH="${PATH}:/"
